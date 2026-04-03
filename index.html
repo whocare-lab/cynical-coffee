@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>厭世咖啡 × 爆文體質檢測器 | CYNICAL COFFEE</title>
+  <meta name="description" content="你有爆文體質嗎？用厭世咖啡的方式，找出你的社群媒體潛力。MSI 視覺風格，厭世美學，一杯咖啡，一份真相。" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <!-- ══ Navigation ══════════════════════════════ -->
+  <nav class="nav" role="navigation" aria-label="主選單">
+    <div class="nav-logo">CYNICAL<span>COFFEE</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">關於我們</a></li>
+      <li><a href="#quiz-anchor">爆文檢測</a></li>
+      <li><a href="#menu">菜單</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══ Hero ════════════════════════════════════ -->
+  <header class="hero" role="banner">
+    <div class="msi-corner tl"></div>
+    <div class="msi-corner tr"></div>
+    <div class="msi-corner bl"></div>
+    <div class="msi-corner br"></div>
+
+    <p class="hero-eyebrow">CYNICAL COFFEE × MSI VISUAL</p>
+
+    <h1 class="hero-title">
+      <span class="line-cn">厭世咖啡</span>
+      <span class="line-en">CYNICAL</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      喝一杯誠實的苦，做一個清醒的人。<br />
+      在演算法的噪音裡，我們只賣真味道。
+    </p>
+
+    <a href="#quiz-anchor" class="hero-cta" aria-label="前往爆文體質檢測器">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+      </svg>
+      測測你的爆文體質
+    </a>
+
+    <div class="hero-deco" aria-hidden="true">☕</div>
+  </header>
+
+  <hr class="msi-divider" />
+
+  <!-- ══ About / Features ════════════════════════ -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">ABOUT US</span>
+      <h2 class="section-title" id="about-title">我們是<em>厭世咖啡</em></h2>
+      <p class="section-desc">
+        不是每個人都能接受我們的苦，但接受的人，再也不想喝別的。
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <span class="feature-icon" aria-hidden="true">🌑</span>
+        <h3 class="feature-title">黑暗美學</h3>
+        <p class="feature-desc">
+          我們的視覺靈感來自深夜、工業風格與 MSI 的銳利線條。咖啡是黑的，人生也是。
+        </p>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-icon" aria-hidden="true">⚡</span>
+        <h3 class="feature-title">高壓萃取</h3>
+        <p class="feature-desc">
+          就像過度運轉的 CPU，我們把每一顆豆子逼到極限，才能榨出最真實的味道。
+        </p>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-icon" aria-hidden="true">🔥</span>
+        <h3 class="feature-title">爆文能量</h3>
+        <p class="feature-desc">
+          每杯咖啡都含有讓你清醒的咖啡因，以及讓你說出真心話的厭世精神。
+        </p>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-icon" aria-hidden="true">🎯</span>
+        <h3 class="feature-title">精準直擊</h3>
+        <p class="feature-desc">
+          不廢話、不美化、不帶濾鏡。就像我們的爆文檢測器——給你最直接的答案。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="msi-divider" />
+
+  <!-- ══ Quiz ═════════════════════════════════════ -->
+  <section class="quiz-section" id="quiz-anchor" aria-labelledby="quiz-title">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">VIRAL DNA TEST</span>
+      <h2 class="section-title" id="quiz-title"><em>爆文體質</em>檢測器</h2>
+      <p class="section-desc">
+        8 個問題，找出你的社群媒體基因。結果可能讓你崩潰，但咖啡會讓你平靜。
+      </p>
+    </div>
+
+    <!-- Quiz body -->
+    <div class="quiz-container" id="quiz-section">
+      <div class="quiz-progress-wrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="測驗進度">
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="progress-fill"></div>
+        </div>
+        <span class="quiz-progress-text" id="progress-text">1 / 8</span>
+      </div>
+
+      <div class="quiz-card" role="form" aria-label="當前問題">
+        <p class="quiz-q-number" id="q-number">QUESTION 01</p>
+        <p class="quiz-question" id="q-text"></p>
+        <div class="quiz-options" id="options-wrap" role="radiogroup" aria-label="選項"></div>
+        <div class="quiz-nav">
+          <button class="btn-next" id="btn-next" aria-label="下一題" aria-disabled="true" disabled>
+            下一題
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result body -->
+    <div class="quiz-container" id="result-section" style="display:none" aria-live="polite" aria-label="測驗結果">
+      <div class="result-card">
+        <div class="msi-corner tl"></div>
+        <div class="msi-corner tr"></div>
+        <div class="msi-corner bl"></div>
+        <div class="msi-corner br"></div>
+
+        <span class="result-badge">ANALYSIS COMPLETE</span>
+        <span class="result-type-emoji" id="result-emoji" aria-hidden="true"></span>
+        <h3 class="result-type-name" id="result-name"></h3>
+        <p class="result-type-en" id="result-name-en"></p>
+        <p class="result-desc" id="result-desc"></p>
+
+        <div class="score-meter" role="progressbar" aria-label="爆文指數" aria-valuemin="0" aria-valuemax="100">
+          <div class="score-label">
+            <span>爆文指數</span>
+            <span>VIRAL INDEX</span>
+          </div>
+          <div class="score-track">
+            <div class="score-fill" id="score-fill"></div>
+          </div>
+        </div>
+
+        <div class="result-traits" id="traits-wrap" aria-label="你的特質標籤"></div>
+
+        <button class="btn-restart" id="btn-restart" aria-label="重新測驗">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+          </svg>
+          重新測驗
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <hr class="msi-divider" />
+
+  <!-- ══ Menu ══════════════════════════════════════ -->
+  <section id="menu" aria-labelledby="menu-title">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">THE MENU</span>
+      <h2 class="section-title" id="menu-title">厭世<em>菜單</em></h2>
+      <p class="section-desc">
+        每個品項都有自己的故事，每個故事都略帶苦澀。
+      </p>
+    </div>
+
+    <div class="menu-grid">
+      <article class="menu-item fade-in">
+        <span class="menu-emoji" aria-hidden="true">🌑</span>
+        <h3 class="menu-name">厭世黑</h3>
+        <p class="menu-name-en">Nihil Espresso</p>
+        <p class="menu-price">NT$ 80</p>
+      </article>
+      <article class="menu-item fade-in">
+        <span class="menu-emoji" aria-hidden="true">🔴</span>
+        <h3 class="menu-name">紅眼壓力</h3>
+        <p class="menu-name-en">Red Eye Pressure</p>
+        <p class="menu-price">NT$ 120</p>
+      </article>
+      <article class="menu-item fade-in">
+        <span class="menu-emoji" aria-hidden="true">🌫️</span>
+        <h3 class="menu-name">霧霾拿鐵</h3>
+        <p class="menu-name-en">Smog Latte</p>
+        <p class="menu-price">NT$ 140</p>
+      </article>
+      <article class="menu-item fade-in">
+        <span class="menu-emoji" aria-hidden="true">⚡</span>
+        <h3 class="menu-name">爆文能量</h3>
+        <p class="menu-name-en">Viral Boost</p>
+        <p class="menu-price">NT$ 150</p>
+      </article>
+      <article class="menu-item fade-in">
+        <span class="menu-emoji" aria-hidden="true">🌙</span>
+        <h3 class="menu-name">深夜下班</h3>
+        <p class="menu-name-en">Late Shift Cold Brew</p>
+        <p class="menu-price">NT$ 130</p>
+      </article>
+      <article class="menu-item fade-in">
+        <span class="menu-emoji" aria-hidden="true">🤍</span>
+        <h3 class="menu-name">假裝快樂</h3>
+        <p class="menu-name-en">Pretend It's Fine</p>
+        <p class="menu-price">NT$ 145</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ Footer ════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="msi-corner tl"></div>
+    <div class="msi-corner tr"></div>
+    <div class="footer-logo">CYNICAL<span>COFFEE</span></div>
+    <p class="footer-tagline">喝一杯誠實的苦 · 做一個清醒的人</p>
+    <p class="footer-copy">© 2024 厭世咖啡 CYNICAL COFFEE. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
