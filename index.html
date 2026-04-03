@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>厭世咖啡 — SEO 工具，反正你做了也不一定有用</title>
+  <meta name="description" content="厭世咖啡提供 6 款免費 SEO 工具：SERP 模擬器、OG 社群預覽器、Threads 爆文體質檢測器、標題分析器、Schema 產生器、可讀性分析器。不保證排第一，但至少讓你知道自己哪裡爛。" />
+  <meta name="keywords" content="SEO工具,SERP預覽,OG圖卡,Threads演算法,厭世,台灣SEO" />
+  <meta name="author" content="厭世咖啡" />
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="厭世咖啡 — SEO 工具，反正你做了也不一定有用" />
+  <meta property="og:description" content="免費 SEO 工具：SERP 模擬器、OG 預覽器、Threads 體質檢測。" />
+  <meta property="og:site_name" content="厭世咖啡" />
+  <meta property="og:locale" content="zh_TW" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="厭世咖啡 — SEO 工具" />
+  <meta name="twitter:description" content="反正寫了也不一定有人看，但至少 SEO 對了" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Fontshare: Satoshi + Cabinet Grotesk -->
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet" />
+
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========================
+       HEADER
+       ======================== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <!-- Logo -->
+      <a href="#" class="logo-link" aria-label="厭世咖啡首頁">
+        <!-- Coffee cup SVG with terminal cursor -->
+        <svg class="logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Cup body -->
+          <rect x="8" y="20" width="26" height="20" rx="4" fill="#c8956c"/>
+          <!-- Cup handle -->
+          <path d="M34 25 Q42 25 42 31 Q42 37 34 37" stroke="#c8956c" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <!-- Saucer -->
+          <ellipse cx="21" cy="41" rx="15" ry="3" fill="#a0714f"/>
+          <!-- Terminal inside cup -->
+          <text x="12" y="36" font-family="monospace" font-size="10" fill="#1a1210" font-weight="bold">&gt;_</text>
+          <!-- Steam ">" shapes forming prompt -->
+          <path d="M12 8 L18 12 L12 16" fill="none" stroke="#c8956c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19 6 L25 10 L19 14" fill="none" stroke="#c8956c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+          <path d="M26 9 L32 13 L26 17" fill="none" stroke="#c8956c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.25"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-zh">厭世咖啡</span>
+          <span class="logo-en">Cynical Coffee</span>
+        </div>
+      </a>
+
+      <!-- Tab navigation -->
+      <nav class="tab-nav" role="tablist" aria-label="工具選單">
+        <button class="tab-btn active" data-tab="serp" role="tab" aria-selected="true">
+          <span class="tab-number">1</span>
+          SERP 模擬器
+        </button>
+        <button class="tab-btn" data-tab="og" role="tab" aria-selected="false">
+          <span class="tab-number">2</span>
+          OG 社群預覽器
+        </button>
+        <button class="tab-btn" data-tab="threads" role="tab" aria-selected="false">
+          <span class="tab-number">3</span>
+          Threads 爆文
+        </button>
+        <button class="tab-btn" data-tab="headline" role="tab" aria-selected="false">
+          <span class="tab-number">4</span>
+          標題分析器
+        </button>
+        <button class="tab-btn" data-tab="schema" role="tab" aria-selected="false">
+          <span class="tab-number">5</span>
+          Schema 產生
+        </button>
+        <button class="tab-btn" data-tab="readability" role="tab" aria-selected="false">
+          <span class="tab-number">6</span>
+          可讀性分析
+        </button>
+      </nav>
+
+      <!-- Actions -->
+      <div class="header-actions">
+        <span class="badge-beta">免費</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================
+       MAIN CONTENT
+       ======================== -->
+  <main class="main-content">
+
+    <!-- ========================
+         TOOL 1: SERP 模擬器
+         ======================== -->
+    <section class="tool-panel active" id="panel-serp" role="tabpanel" aria-label="SERP 模擬器">
+      <div class="tool-header">
+        <h1 class="tool-title">SERP 模擬器</h1>
+        <p class="tool-subtitle">在 Google 傷你之前，先看看自己有多難看。輸入資訊，即時預覽搜尋結果長相。</p>
+      </div>
+
+      <div class="tool-layout">
+        <!-- Left: Inputs -->
+        <div class="input-panel">
+
+          <!-- Device Toggle -->
+          <div class="field-group">
+            <span class="field-label">裝置模式</span>
+            <div class="device-toggle">
+              <button class="device-btn active" data-device="desktop" type="button">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="1" y="2" width="12" height="8" rx="1.5"/><rect x="4" y="11" width="6" height="1.5" rx="0.75"/></svg>
+                桌機
+              </button>
+              <button class="device-btn" data-device="mobile" type="button">
+                <svg width="10" height="14" viewBox="0 0 10 14" fill="currentColor"><rect x="1" y="1" width="8" height="12" rx="2"/><circle cx="5" cy="11.5" r="0.75" fill="#1a1210"/></svg>
+                手機
+              </button>
+            </div>
+          </div>
+
+          <!-- Title -->
+          <div class="field-group">
+            <label class="field-label" for="serp-title">
+              <span class="zh">頁面標題</span> / Title Tag
+            </label>
+            <input type="text" id="serp-title" placeholder="把你的標題丟進來（反正也不會有人看）" maxlength="200" />
+            <div class="counter-row" id="serp-title-counters">
+              <span class="counter-badge neutral" id="serp-title-chars">0 字元</span>
+              <span class="counter-badge neutral" id="serp-title-px">0px</span>
+              <span class="counter-badge neutral" id="serp-title-limit-label">桌機限制 580px</span>
+            </div>
+            <span class="field-hint">桌機建議 580px 以內，手機建議 920px 以內</span>
+          </div>
+
+          <!-- URL -->
+          <div class="field-group">
+            <label class="field-label" for="serp-url">
+              <span class="zh">網址</span> / URL
+            </label>
+            <input type="url" id="serp-url" placeholder="https://你的網站.com/你的頁面" />
+            <span class="field-hint">這會顯示成麵包屑路徑，越短越好看</span>
+          </div>
+
+          <!-- Meta Description -->
+          <div class="field-group">
+            <label class="field-label" for="serp-desc">
+              <span class="zh">Meta 描述</span> / Description
+            </label>
+            <textarea id="serp-desc" placeholder="150–160 字是甜蜜點，但 Google 可能照樣自己改掉" rows="3"></textarea>
+            <div class="counter-row" id="serp-desc-counters">
+              <span class="counter-badge neutral" id="serp-desc-chars">0 字元</span>
+              <span class="counter-badge neutral" id="serp-desc-px">0px</span>
+              <span class="counter-badge neutral" id="serp-desc-limit-label">桌機限制 920px</span>
+            </div>
+          </div>
+
+          <!-- Rich Results -->
+          <div class="field-group">
+            <span class="field-label">Rich Result 加料</span>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" id="serp-breadcrumb" />
+                <span class="checkbox-label"><span class="zh">麵包屑</span> Breadcrumb</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="serp-stars" />
+                <span class="checkbox-label"><span class="zh">評星</span> Review Stars (4.5/5)</span>
+              </label>
+
+            </div>
+          </div>
+
+        </div><!-- /input-panel -->
+
+        <!-- Right: Live Preview -->
+        <div class="preview-panel">
+          <div class="panel-card">
+            <div class="panel-card-title">即時預覽 — 這就是現實</div>
+            <div class="serp-preview" id="serp-preview-container">
+              <!-- Google bar -->
+              <div class="google-bar">
+                <div class="google-logo">
+                  <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+                </div>
+                <div class="google-search-bar">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                  <span id="serp-google-searchtext" style="color:#202124;font-size:0.85rem;">你的關鍵字</span>
+                </div>
+              </div>
+
+              <!-- SERP Result -->
+              <div class="serp-result" id="serp-result">
+                <div class="serp-site-info">
+                  <div class="serp-favicon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="4"/></svg>
+                  </div>
+                  <span class="serp-domain" id="serp-domain-display">你的網站.com</span>
+                </div>
+                <div class="serp-breadcrumb" id="serp-breadcrumb-display" style="display:none;"></div>
+                <a href="#" class="serp-title" id="serp-title-display">你的頁面標題會出現在這裡</a>
+                <div class="serp-stars" id="serp-stars-display" style="display:none;">
+                  <span class="stars-visual">★★★★★</span>
+                  <span class="star-rating">4.5</span>
+                  <a href="#" class="star-count">評分</a>
+                  <span class="star-votes">(128)</span>
+                </div>
+                <div class="serp-desc" id="serp-desc-display">你的 meta 描述會顯示在這裡，讓人決定要不要點進去。通常他們不會。</div>
+
+
+              </div>
+            </div>
+          </div>
+        </div><!-- /preview-panel -->
+      </div>
+    </section>
+
+    <!-- ========================
+         TOOL 2: OG 社群預覽器
+         ======================== -->
+    <section class="tool-panel" id="panel-og" role="tabpanel" aria-label="OG 社群預覽器">
+      <div class="tool-header">
+        <h1 class="tool-title">OG 社群預覽器</h1>
+        <p class="tool-subtitle">貼出去的那一刻，你的 OG 卡片長這樣。先看清楚再後悔也不遲。</p>
+      </div>
+
+      <!-- OG Controls -->
+      <div class="og-controls">
+        <button class="btn btn-primary" id="og-generate-btn" type="button">
+          ☕ 產生 OG 標籤
+        </button>
+        <button class="btn btn-ghost" id="og-clear-btn" type="button">
+          清除全部
+        </button>
+      </div>
+
+      <div class="tool-layout">
+        <!-- Left: Inputs -->
+        <div class="input-panel">
+
+          <div class="field-group">
+            <label class="field-label" for="og-title">
+              <span class="zh">og:title</span>
+            </label>
+            <input type="text" id="og-title" placeholder="你的分享標題（60 字內比較帥）" maxlength="300" />
+            <div class="counter-row">
+              <span class="counter-badge neutral" id="og-title-count">0 / 60</span>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="og-desc">
+              <span class="zh">og:description</span>
+            </label>
+            <textarea id="og-desc" placeholder="描述一下你在幹嘛（155 字內）" rows="3"></textarea>
+            <div class="counter-row">
+              <span class="counter-badge neutral" id="og-desc-count">0 / 155</span>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="og-image">
+              <span class="zh">og:image</span>
+            </label>
+            <input type="url" id="og-image" placeholder="https://... （推薦 1200×630）" />
+            <span class="field-hint">1200×630 是標準，但你也可以用正方形，只要別太醜</span>
+          </div>
+
+          <div class="two-col">
+            <div class="field-group">
+              <label class="field-label" for="og-url">
+                <span class="zh">og:url</span>
+              </label>
+              <input type="url" id="og-url" placeholder="https://..." />
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="og-sitename">
+                <span class="zh">og:site_name</span>
+              </label>
+              <input type="text" id="og-sitename" placeholder="網站名稱" />
+            </div>
+          </div>
+
+          <!-- Generated code block -->
+          <div id="og-code-section" style="display:none;">
+            <div class="divider"></div>
+            <div class="section-label">複製貼到 &lt;head&gt;</div>
+            <div class="code-block">
+              <button class="btn btn-ghost btn-sm copy-btn" id="og-copy-btn" type="button">複製</button>
+              <pre id="og-code-output"></pre>
+            </div>
+          </div>
+
+        </div><!-- /input-panel -->
+
+        <!-- Right: Platform previews -->
+        <div class="preview-panel">
+          <div class="panel-card">
+            <div class="panel-card-title">社群平台預覽</div>
+            <div class="og-grid" id="og-preview-grid">
+
+              <!-- Facebook -->
+              <div class="og-card og-facebook">
+                <div class="og-platform-label">Facebook</div>
+                <div class="og-img-wrap" id="fb-img-wrap">
+                  <div class="og-img-placeholder">圖片會出現在這裡<br/>1200×630</div>
+                </div>
+                <div class="og-body">
+                  <div class="og-site" id="fb-site">你的網站名稱</div>
+                  <div class="og-title" id="fb-title">分享標題</div>
+                  <div class="og-desc" id="fb-desc">描述文字</div>
+                </div>
+              </div>
+
+              <!-- LINE -->
+              <div class="og-card og-line">
+                <div class="og-platform-label">LINE</div>
+                <div class="og-body">
+                  <div class="og-thumb" id="line-thumb">
+                    <div class="og-img-placeholder" style="font-size:0.6rem;">圖</div>
+                  </div>
+                  <div class="og-text">
+                    <div class="og-site" id="line-site">你的網站名稱</div>
+                    <div class="og-title" id="line-title">分享標題</div>
+                    <div class="og-desc" id="line-desc">描述文字</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Twitter/X -->
+              <div class="og-card og-twitter">
+                <div class="og-platform-label">𝕏 Twitter</div>
+                <div class="og-img-wrap" id="tw-img-wrap">
+                  <div class="og-img-placeholder" style="color:#555;background:#1a1a1a;">圖片</div>
+                </div>
+                <div class="og-body">
+                  <div class="og-title" id="tw-title">分享標題</div>
+                  <div class="og-desc" id="tw-desc">描述文字</div>
+                  <div class="og-site" id="tw-site" style="display:flex;align-items:center;gap:4px;margin-top:4px;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                    <span>你的網站.com</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Discord -->
+              <div class="og-card og-discord">
+                <div class="og-platform-label">Discord</div>
+                <div class="og-inner">
+                  <div class="og-meta">😊 <strong>某人</strong> — 今天 下午 3:14</div>
+                  <div style="font-size:0.78rem;color:#dcddde;margin-bottom:6px;">分享一個連結給你：</div>
+                  <div class="og-site" id="dc-site">你的網站名稱</div>
+                  <div class="og-title" id="dc-title">分享標題</div>
+                  <div class="og-desc" id="dc-desc">描述文字</div>
+                  <div class="og-img-wrap" id="dc-img-wrap" style="margin-top:8px;">
+                    <div class="og-img-placeholder" style="background:#1e1f22;color:#555;">圖片</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div><!-- /preview-panel -->
+      </div>
+    </section>
+
+    <!-- ========================
+         TOOL 3: Threads 爆文體質
+         ======================== -->
+    <section class="tool-panel" id="panel-threads" role="tabpanel" aria-label="Threads 爆文體質檢測器">
+      <div class="tool-header">
+        <h1 class="tool-title">Threads 爆文體質檢測器</h1>
+        <p class="tool-subtitle">基於 MSI（有意義的社群互動）研究，幫你在發文前先知道這杯咖啡是水還是手沖。每項不足都附改善版，直接複製貼上驗證。</p>
+      </div>
+
+      <div class="threads-layout">
+        <!-- Input section -->
+        <div class="threads-input-section">
+          <div class="field-group">
+            <label class="field-label" for="threads-input">
+              <span class="zh">貼文草稿</span> — 把你的文章丟進來讓我嘗嘗
+            </label>
+            <textarea class="threads-textarea" id="threads-input" placeholder="輸入你的 Threads 貼文草稿。別不好意思，它能有多爛就多爛，我都見過了。" maxlength="3600" rows="6"></textarea>
+            <div class="threads-controls">
+              <span class="threads-char-count" id="threads-char-count">0 / 3600 字元</span>
+              <label class="toggle-wrap">
+                <div class="toggle-switch">
+                  <input type="checkbox" id="threads-has-image" />
+                  <div class="toggle-track"></div>
+                  <div class="toggle-thumb"></div>
+                </div>
+                <span class="toggle-label">有附圖嗎？（附圖可加分）</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analysis cards -->
+        <div class="analysis-grid" id="threads-analysis">
+          <!-- Placeholder state when empty -->
+          <div id="threads-placeholder" style="grid-column:1/-1;">
+            <div class="placeholder-state">
+              <div class="placeholder-icon">☕</div>
+              <div>先把文章丟上來，我才能幫你診斷</div>
+              <div class="text-dim" style="font-size:0.75rem;">演算法不等人，但厭世咖啡等你</div>
+            </div>
+          </div>
+
+          <!-- Card 1: Word Count -->
+          <div class="analysis-card" id="card-wordcount" style="display:none;">
+            <div class="analysis-card-header">
+              <span class="analysis-card-title">字數評分</span>
+              <span class="analysis-badge badge-neutral" id="wordcount-badge">—</span>
+            </div>
+            <div class="analysis-value" id="wordcount-value">0 字</div>
+            <div class="analysis-sub" id="wordcount-sub">輸入文字後開始分析</div>
+            <div class="score-bar"><div class="score-bar-fill" id="wordcount-bar" style="width:0%"></div></div>
+          </div>
+
+          <!-- Card 2: Hook Score -->
+          <div class="analysis-card" id="card-hook" style="display:none;">
+            <div class="analysis-card-header">
+              <span class="analysis-card-title">Hook 評分</span>
+              <span class="analysis-badge badge-neutral" id="hook-badge">—</span>
+            </div>
+            <div class="analysis-value coffee-cups" id="hook-cups">☕☕☕☕☕</div>
+            <div class="analysis-sub" id="hook-sub">前 50 字的吸引力</div>
+          </div>
+
+          <!-- Card 3: Share Potential -->
+          <div class="analysis-card" id="card-share" style="display:none;">
+            <div class="analysis-card-header">
+              <span class="analysis-card-title">私訊分享潛力</span>
+              <span class="analysis-badge badge-neutral" id="share-badge">—</span>
+            </div>
+            <div class="analysis-value" id="share-value">—</div>
+            <div class="pattern-tags" id="share-patterns"></div>
+            <div class="analysis-sub" id="share-sub" style="margin-top:8px;"></div>
+          </div>
+
+          <!-- Card 4: Engagement -->
+          <div class="analysis-card" id="card-engagement" style="display:none;">
+            <div class="analysis-card-header">
+              <span class="analysis-card-title">互動誘發力</span>
+              <span class="analysis-badge badge-neutral" id="engagement-badge">—</span>
+            </div>
+            <div class="analysis-value" id="engagement-value">—</div>
+            <div id="engagement-warning" class="alert-warning" style="display:none;"></div>
+            <div class="analysis-sub" id="engagement-sub"></div>
+          </div>
+
+          <!-- Card 5: Semantic Topics -->
+          <div class="analysis-card" id="card-semantic" style="display:none;">
+            <div class="analysis-card-header">
+              <span class="analysis-card-title">語意主題一致性</span>
+              <span class="analysis-badge badge-neutral" id="semantic-badge">—</span>
+            </div>
+            <div class="analysis-sub" style="margin-bottom:8px;">這篇的主題語意向量偏向：</div>
+            <div id="semantic-keywords"></div>
+          </div>
+
+          <!-- Card 6: MSI Score (full width) -->
+          <div class="analysis-card msi-card" id="card-msi" style="display:none;">
+            <div class="analysis-card-header">
+              <span class="analysis-card-title">綜合 MSI 預估分數</span>
+              <span class="analysis-badge" id="msi-badge">—</span>
+            </div>
+            <div class="msi-score-display">
+              <div class="msi-score-number" id="msi-score">0</div>
+              <div class="msi-label" id="msi-label">這杯是水</div>
+              <div style="width:100%;max-width:400px;">
+                <div class="score-bar" style="height:10px;">
+                  <div class="score-bar-fill" id="msi-bar" style="width:0%"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:0.72rem;color:var(--text-dim);">
+                  <span>這杯是水</span>
+                  <span>美式咖啡</span>
+                  <span>拿鐵</span>
+                  <span>冠軍手沖</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 7: Suggestions (full width) -->
+          <div class="analysis-card suggestions-card" id="card-suggestions" style="display:none;">
+            <div class="analysis-card-header">
+              <span class="analysis-card-title">☕ AI 建議 — 改完再發</span>
+              <span class="analysis-badge badge-neutral" id="suggestions-badge">貼心診斷</span>
+            </div>
+            <div id="suggestions-list"></div>
+          </div>
+
+          <!-- Card 8: Rewritten high-score version (full width) -->
+          <div class="analysis-card rewrite-card" id="card-rewrite" style="display:none;">
+            <div class="analysis-card-header">
+              <span class="analysis-card-title">🔥 改善後的 80+ 分版本 — 直接複製驗證</span>
+              <span class="analysis-badge badge-green" id="rewrite-badge">冠軍手沖</span>
+            </div>
+            <div class="rewrite-note" id="rewrite-note">以下是根據所有扣分項目改寫後的完整文章，複製貼上到上方輸入框即可驗證分數提升：</div>
+            <div class="rewrite-content" id="rewrite-content"></div>
+            <button class="btn btn-primary btn-copy-rewrite" id="copy-rewrite-btn" type="button">📋 複製改善版文章</button>
+            <div class="rewrite-changelog" id="rewrite-changelog"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         TOOL 4: 標題分析器
+         ======================== -->
+    <section class="tool-panel" id="panel-headline" role="tabpanel" aria-label="標題分析器">
+      <div class="tool-header">
+        <h1 class="tool-title">標題分析器</h1>
+        <p class="tool-subtitle">你的標題有多少人想點？先用數據看看自己的標題是金句還是垃圾，反正你也要改好幾次。</p>
+      </div>
+
+      <div class="tool-layout">
+        <!-- Left: Input -->
+        <div class="input-panel">
+          <div class="field-group">
+            <label class="field-label" for="headline-input">
+              <span class="zh">文章標題</span> / Headline
+            </label>
+            <textarea id="headline-input" placeholder="把你的標題丟進來，讓我嘲笑一下" rows="3" maxlength="200"></textarea>
+            <div class="counter-row">
+              <span class="counter-badge neutral" id="headline-char-count">0 字元</span>
+            </div>
+            <span class="field-hint">中文標題 15-25 字是甜蜜點，超過 35 字連 Google 都懶得看完</span>
+          </div>
+          <button class="btn btn-primary" id="headline-analyze-btn" type="button">☕ 開始分析標題</button>
+        </div>
+
+        <!-- Right: Results -->
+        <div class="preview-panel" style="position:static;">
+          <!-- Placeholder -->
+          <div id="headline-placeholder">
+            <div class="placeholder-state">
+              <div class="placeholder-icon">☕</div>
+              <div>輸入標題，讓我幫你算算命</div>
+              <div class="text-dim" style="font-size:0.75rem;">標題決定 80% 的點擊率，剩下 20% 靠運氣</div>
+            </div>
+          </div>
+
+          <!-- Score display -->
+          <div id="headline-results" style="display:none;">
+            <div class="panel-card" style="text-align:center;margin-bottom:var(--space-md);">
+              <div class="panel-card-title">綜合評分</div>
+              <div class="msi-score-display">
+                <div class="msi-score-number" id="headline-total-score">0</div>
+                <div class="msi-label" id="headline-score-label">這標題需要急救</div>
+                <div style="width:100%;max-width:400px;">
+                  <div class="score-bar" style="height:10px;">
+                    <div class="score-bar-fill" id="headline-score-bar" style="width:0%"></div>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:0.72rem;color:var(--text-dim);">
+                    <span>白開水</span>
+                    <span>即溶咖啡</span>
+                    <span>手沖拿鐵</span>
+                    <span>冠軍手沖</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dimension bars -->
+            <div class="panel-card" style="margin-bottom:var(--space-md);">
+              <div class="panel-card-title">六維分析</div>
+              <div id="headline-dimensions"></div>
+            </div>
+
+            <!-- Tips -->
+            <div class="panel-card" style="margin-bottom:var(--space-md);">
+              <div class="panel-card-title">改善建議</div>
+              <div id="headline-tips"></div>
+            </div>
+
+            <!-- Improved version -->
+            <div class="panel-card" id="headline-improved-section" style="display:none;">
+              <div class="panel-card-title">改善版標題</div>
+              <div id="headline-improved" style="font-size:1rem;color:var(--text);font-weight:600;margin-bottom:var(--space-md);padding:var(--space-md);background:var(--surface);border-radius:var(--radius-md);border-left:3px solid var(--green);"></div>
+              <button class="btn btn-ghost btn-sm" id="headline-copy-improved" type="button">複製改善版</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         TOOL 5: Schema 產生器
+         ======================== -->
+    <section class="tool-panel" id="panel-schema" role="tabpanel" aria-label="Schema 產生器">
+      <div class="tool-header">
+        <h1 class="tool-title">Schema 產生器</h1>
+        <p class="tool-subtitle">結構化資料是跟 Google 說話的暗號。懶得手寫 JSON-LD？你不是第一個，所以我做了這個。</p>
+      </div>
+
+      <div class="tool-layout">
+        <!-- Left: Inputs -->
+        <div class="input-panel">
+          <div class="field-group">
+            <label class="field-label" for="schema-type">
+              <span class="zh">Schema 類型</span> / Type
+            </label>
+            <select id="schema-type">
+              <option value="FAQPage">FAQPage（常見問題）</option>
+              <option value="HowTo">HowTo（教學步驟）</option>
+              <option value="Article">Article（文章）</option>
+            </select>
+            <span class="field-hint">選一個你需要的類型，表單會自動變</span>
+          </div>
+
+          <!-- Dynamic form container -->
+          <div id="schema-form-container"></div>
+
+          <div style="display:flex;gap:var(--space-sm);flex-wrap:wrap;">
+            <button class="btn btn-primary" id="schema-generate-btn" type="button">☕ 產生 JSON-LD</button>
+            <button class="btn btn-ghost" id="schema-validate-btn" type="button">🔍 驗證</button>
+          </div>
+        </div>
+
+        <!-- Right: Output -->
+        <div class="preview-panel" style="position:static;">
+          <div id="schema-placeholder">
+            <div class="placeholder-state">
+              <div class="placeholder-icon">☕</div>
+              <div>填完表單，按下產生就能拿到 JSON-LD</div>
+              <div class="text-dim" style="font-size:0.75rem;">貼到 &lt;head&gt; 裡面，Google 就會比較喜歡你</div>
+            </div>
+          </div>
+
+          <div id="schema-output" style="display:none;">
+            <!-- Code block -->
+            <div class="panel-card" style="margin-bottom:var(--space-md);">
+              <div class="panel-card-title">JSON-LD 程式碼</div>
+              <div class="code-block" style="margin-top:0;">
+                <button class="btn btn-ghost btn-sm copy-btn" id="schema-copy-btn" type="button">複製 JSON-LD</button>
+                <pre id="schema-code-output"><code></code></pre>
+              </div>
+            </div>
+
+            <!-- Visual preview -->
+            <div class="panel-card">
+              <div class="panel-card-title">Google 搜尋預覽（簡化版）</div>
+              <div id="schema-google-preview" class="serp-preview" style="padding:var(--space-md);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         TOOL 6: 可讀性分析器
+         ======================== -->
+    <section class="tool-panel" id="panel-readability" role="tabpanel" aria-label="可讀性分析器">
+      <div class="tool-header">
+        <h1 class="tool-title">可讀性分析器</h1>
+        <p class="tool-subtitle">你寫的東西真的有人看得懂嗎？Yoast 風格的中文可讀性分析，紅綠燈幫你把關，每一個紅燈都是讀者離開的理由。</p>
+      </div>
+
+      <div class="readability-layout">
+        <!-- Input -->
+        <div class="threads-input-section">
+          <div class="field-group">
+            <label class="field-label" for="readability-input">
+              <span class="zh">文章內容</span> — 貼上你的文章，越長越準
+            </label>
+            <textarea class="threads-textarea" id="readability-input" placeholder="把你的文章全部貼上來，5000 字也撐得住。反正我不會幫你看內容好不好，只看結構。" maxlength="50000" rows="8"></textarea>
+            <div class="threads-controls">
+              <span class="threads-char-count" id="readability-char-count">0 字元</span>
+              <span class="threads-char-count" id="readability-read-time">預估閱讀 0 分鐘</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div id="readability-placeholder">
+          <div class="placeholder-state">
+            <div class="placeholder-icon">☕</div>
+            <div>貼上文章，我幫你檢查可讀性</div>
+            <div class="text-dim" style="font-size:0.75rem;">寫得好不好另說，至少先讓人看得下去</div>
+          </div>
+        </div>
+
+        <div id="readability-results" style="display:none;">
+          <!-- Overall score -->
+          <div class="analysis-card msi-card" style="margin-bottom:var(--space-md);">
+            <div class="analysis-card-header">
+              <span class="analysis-card-title">可讀性總分</span>
+              <span class="analysis-badge" id="readability-overall-badge">—</span>
+            </div>
+            <div class="msi-score-display">
+              <div class="msi-score-number" id="readability-overall-score">0</div>
+              <div class="msi-label" id="readability-overall-label">等待分析</div>
+              <div style="width:100%;max-width:400px;">
+                <div class="score-bar" style="height:10px;">
+                  <div class="score-bar-fill" id="readability-overall-bar" style="width:0%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metrics list -->
+          <div class="analysis-card" style="margin-bottom:var(--space-md);">
+            <div class="analysis-card-header">
+              <span class="analysis-card-title">七項指標</span>
+            </div>
+            <div id="readability-metrics"></div>
+          </div>
+
+          <!-- SEO Tips -->
+          <div class="analysis-card">
+            <div class="analysis-card-header">
+              <span class="analysis-card-title">☕ SEO 建議</span>
+            </div>
+            <div id="readability-tips"></div>
+          </div>
+
+          <!-- Rewrite card: appears when score < 80 -->
+          <div class="analysis-card rewrite-card" id="readability-rewrite-card" style="display:none;margin-top:var(--space-md);">
+            <div class="analysis-card-header">
+              <span class="analysis-card-title">🔥 改善後的 80+ 分版本 — 直接複製驗證</span>
+              <span class="analysis-badge badge-green" id="readability-rewrite-badge">80+ 分</span>
+            </div>
+            <div class="rewrite-note" id="readability-rewrite-note"></div>
+            <div class="rewrite-content" id="readability-rewrite-content"></div>
+            <button class="btn btn-primary btn-copy-rewrite" id="readability-copy-rewrite-btn" type="button">📋 複製改善版文章</button>
+            <div class="rewrite-changelog" id="readability-rewrite-changelog"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- /main-content -->
+
+  <!-- ========================
+       FOOTER
+       ======================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-tagline">
+        <span>厭世咖啡</span> — 反正寫了也不一定有人看，但至少 SEO 對了
+      </div>
+      <div class="footer-links">
+        <a href="https://www.threads.com/@iistone_1" target="_blank" rel="noopener">Threads @iistone_1</a>
+        <span class="footer-sep">·</span>
+        <a href="https://vocus.cc/user/@iiStone" target="_blank" rel="noopener">方格子 @iiStone</a>
+      </div>
+      <div class="footer-credit">
+        所有工具皆在瀏覽器執行，不上傳任何資料 · 為石頭哥量身打造
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>
